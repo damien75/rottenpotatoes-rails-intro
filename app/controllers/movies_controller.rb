@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    sort = params[:sort]# || session[:sort]
+    sort = params[:sort] || session[:sort]
     case sort
     when 'title'
       ordering,@title_header = :title, 'hilite'
@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
       ordering,@release_date_header = :release_date, 'hilite'
     end
     @all_ratings = Movie.all_ratings
-    @selected_ratings = params[:ratings] || {}# || session[:ratings] || {}
+    @selected_ratings = params[:ratings] || session[:ratings] || {}
     
     if @selected_ratings == {}
       @selected_ratings = Hash[@all_ratings.map {|rating| [rating, rating]}]
