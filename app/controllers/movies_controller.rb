@@ -11,7 +11,18 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    if !params[:sort].nil?
+      case params[:sort]
+      when "title"
+        @movies = Movie.order(:title)
+      when "release_date"
+        @movies = Movie.order(:release_date)
+      else
+        flash[:notice] = "Wrong filter put in params"
+      end
+    else
+      @movies = Movie.all
+    end
   end
 
   def new

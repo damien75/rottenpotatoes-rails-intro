@@ -47,6 +47,7 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'autotest'
+  gem 'rerun'
 end
 
 group :production do
